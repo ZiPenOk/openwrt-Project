@@ -70,7 +70,10 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /mnt/workdir
         sudo chown $USER:$GROUPS /mnt/workdir
-        
+
+    - name: TG推送
+      run: curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=🔥X86-immortalwrt自用版固件开刷编译，请耐心等待！"
+
     - name: 下载固件源码
       working-directory: /mnt/workdir
       run: |
