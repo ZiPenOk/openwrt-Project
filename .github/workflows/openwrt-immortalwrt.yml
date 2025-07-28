@@ -185,7 +185,7 @@ jobs:
         
     - name: 发布至release
       id: release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@main
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         name: ${{ env.FILE_TIME }} 「 openwrt-immortalwrt-X86-64 」
@@ -202,7 +202,7 @@ jobs:
         artifacts: ${{ env.FIRMWARE }}/*
 
     - name: 清理旧的workflow
-      uses: dev-drprasad/delete-older-releases@v0.3.2
+      uses: Mattraks/delete-workflow-runs@main
       with:
         token: ${{ secrets.RELEASE_TOKEN }}
         retain_days: 180
