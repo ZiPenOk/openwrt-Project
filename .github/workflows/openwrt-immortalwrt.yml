@@ -16,8 +16,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  schedule:
-    - cron: 0 21 */5 * * 
+#  schedule:
+#    - cron: 0 21 */5 * * 
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
@@ -70,6 +70,9 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /mnt/workdir
         sudo chown $USER:$GROUPS /mnt/workdir
+
+    - name: TG推送
+      run: curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=🔥X86-immortalwrt-2410 自用版固件开刷编译，请耐心等待！"
         
     - name: 下载固件源码
       working-directory: /mnt/workdir
@@ -191,21 +194,28 @@ jobs:
         commit: main
         token: ${{ secrets.RELEASE_TOKEN }}
         body: |
-          功能介绍：包含IPV6、Passwall、SSR、Dockerman、DDNS、samba4.0、UPnP等。其他应用可以自行在应用商店选择安装。
+          功能介绍：包含Passwall、openclash、iStore应用商店等。其他应用可以自行在应用商店选择安装。
           [固件源码](https://github.com/immortalwrt/immortalwrt/tree/master)
           由衷感谢所有为openwrt无私奉献的大佬们
           📥 固件下载
           🔗 [国外WT网盘](${{ steps.wetransfer.outputs.url }})
         artifacts: ${{ env.FIRMWARE }}/*
 
+    - name: 清理旧的workflow
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        token: ${{ secrets.RELEASE_TOKEN }}
+        retain_days: 180
+        keep_minimum_runs: 5
+
     - name: 删除旧的Releases
       uses: dev-drprasad/delete-older-releases@v0.3.2
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 9
+        keep_latest: 4
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         
-    - name: TG notification #TG推送
-      run: curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=🅾️恭喜主人X86-immortalwrtOS固件编译完成！🎉%0A⏰编译时间：${{ env.DATE }}%0A📥下载地址：https://github.com/firkerword/openwrt-Project/releases/tag/${{ env.TAG_TIME }}%0A🌐WT网盘：${{ steps.wetransfer.outputs.url }}"
+    - name: TG推送
+      run: curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}&text=🔥X86-immortalwrt-2410 自用版固件编译完成！🎉%0A⏰编译时间：${{ env.DATE }}%0A📥下载地址：https://github.com/ZiPenOk/openwrt-Project/releases/tag/${{ env.TAG_TIME }}"
