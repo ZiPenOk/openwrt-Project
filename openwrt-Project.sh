@@ -47,7 +47,8 @@ git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-a
 git clone https://github.com/immortalwrt/homeproxy.git package/luci-app-homeproxy
 # git clone https://github.com/v2rayA/v2raya-openwrt.git package/v2raya-openwrt
 merge_package https://github.com/messense/aliyundrive-webdav aliyundrive-webdav/openwrt applications/aliyundrive-webdav
-merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
+# git clone -b dev https://github.com/vernesong/OpenClash.git package/OpenClash
+merge_package https://github.com/vernesong/OpenClash#dev OpenClash/luci-app-openclash
 git clone https://github.com/firkerword/luci-app-lucky.git package/lucky
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
