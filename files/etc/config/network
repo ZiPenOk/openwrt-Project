@@ -12,6 +12,7 @@ config device
 	option name 'br-lan'
 	option type 'bridge'
 	list ports 'eth0'
+	option ipv6 '0'
 
 config interface 'lan'
 	option proto 'static'
@@ -44,4 +45,8 @@ config interface 'modem'
 	option defaultroute '0'
 	option metric '60'
 	option delegate '0'
+
+config device
+	option name 'eth0'
+	option ipv6 '0'
 
