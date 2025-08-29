@@ -28,7 +28,7 @@ openwrt源码版本，***openwrt-24.10***
 
 ## 固件下载
 
-### 点击[Actions](https://github.com/firkerword/openwrt-Project/actions/workflows/openwrt-Project.yml) 或者[Releases](https://github.com/firkerword/openwrt-Project/releases) 选择需要的版本
+### 点击[Actions](https://github.com/ZiPenOk/openwrt-Exclusive/actions) 或者[Releases](https://github.com/ZiPenOk/openwrt-Exclusive/releases) 选择需要的版本
 ![avatar](https://raw.githubusercontent.com/firkerword/openwrt-stable-version/main/boc/c.png)
 
 ## 固件截图：
@@ -39,7 +39,7 @@ openwrt源码版本，***openwrt-24.10***
 
 联系：[Tg频道订阅](https://t.me/zhinengchaoshenzhe)
 
-稳定自用版云编译地址：[https://github.com/firkerword/openwrt-Exclusive](https://github.com/firkerword/openwrt-Exclusive)
+稳定自用版云编译地址：[https://github.com/firkerword/openwrt-Exclusive](https://github.com/ZiPenOk/openwrt-Exclusive)
 
 
 
